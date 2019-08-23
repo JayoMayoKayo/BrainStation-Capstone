@@ -10,7 +10,7 @@ class Navbar extends React.Component {
     return (
       <>
         <div className="navbar">
-          <AppBar position="static" color='secondary'>
+          <AppBar position="static" color="#ffffff">
             <Tabs>
               <Tab label="Home" />
               <Tab label="Item One" />

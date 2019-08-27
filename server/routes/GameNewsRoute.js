@@ -8,6 +8,23 @@ let testData = require("../testData/testgamedata.json");
 router.get('/', (req, res) => {
   res.json(testData);
   console.log(testData);
+  console.log("it worked!");
+})
+
+router.get('/:appid', (serverReq, serverRes) => {
+  let url = 'http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=' + serverReq.params.appid + '&count=3&maxlength=300&format=json&key=5B5B3B21C85AD550EA1043658984A130';
+  console.log(serverReq.params.appid);
+  axios.get(url)
+  .then(response => {
+    //console.log(response.data);
+    console.log("starts here!");
+    console.log(response.data.appnews.newsitems);
+    //serverRes = response.data.appnews.newsitems;
+    serverRes.json(response.data.appnews.newsitems);
+  })
+  .catch(err => {
+    console.log("You f up foo!");
+  })
 })
 
 module.exports = router;

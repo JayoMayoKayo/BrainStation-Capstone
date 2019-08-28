@@ -13,21 +13,27 @@ import Tab from '@material-ui/core/Tab';
 //Component Stylings
 const styles = {
   navbarMenu: {
-    backgroundColor: 'green'
+    backgroundColor: '#596273',
+  },
+  navbarLink: {
+    '&:hover': {
+      backgroundColor: '#7A8292'
+    }
   }
 };
 
 class Navbar extends React.Component {
   render() {
-    const{ classes } = this.props;
+    const{ classes, value } = this.props;
+
     return (
         <div className="navbar">
           <AppBar className={classes.navbarMenu} position="static">
-            <Tabs>
-              <Link to="/"><Tab label="Home" /></Link>
-              <Link to="/newsFeed"><Tab label="Newsfeed" /></Link>
-              <Link to="/pricechecker"><Tab label="Price Checker" /></Link>
-              <Link to="/about"><Tab label="About" /></Link>
+            <Tabs value="false">
+              <Tab className={classes.navbarLink} label="Home" component={Link} to="/" index={0}></Tab>
+              <Tab className={classes.navbarLink} label="Newsfeed" component={Link} to="/newsfeed" index={1}></Tab>
+              <Tab className={classes.navbarLink} label="Price Checker" component={Link} to="/pricechecker" index={2}></Tab>
+              <Tab className={classes.navbarLink} label="About" component={Link} to="/about" index={3}></Tab>
             </Tabs>
           </AppBar>
         </div>

@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.scss';
+
+//Components
 import HomePage from './components/HomePage/HomePage.js';
 import NewsFeed from './components/NewsFeed/NewsFeed.js';
 import PriceChecker from './components/PriceChecker/PriceChecker.js';

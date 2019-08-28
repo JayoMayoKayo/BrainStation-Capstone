@@ -4,6 +4,9 @@ import React from 'react';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 
+//Components
+import Navbar from '../Navbar/Navbar.js';
+
 class NewsFeed extends React.Component {
   state = { 
     newsData: [],
@@ -16,6 +19,7 @@ class NewsFeed extends React.Component {
   render() {
     return (
       <>
+        <Navbar />
         <h1>NewsFeed</h1>
         <ButtonGroup variant="contained" color="primary">
           <Button onClick={() => {this.getGameNews()}}>Dead By Daylight</Button>

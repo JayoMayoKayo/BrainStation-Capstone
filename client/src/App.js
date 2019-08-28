@@ -6,11 +6,11 @@ import NewsFeed from './components/NewsFeed/NewsFeed.js';
 import PriceChecker from './components/PriceChecker/PriceChecker.js';
 import About from './components/About/About.js';
 
-
 class App extends React.Component {
   render() {  
     return (
       <>
+        
         <Router>
           <Switch>
             <Route exact path="/" component={HomePage}></Route>

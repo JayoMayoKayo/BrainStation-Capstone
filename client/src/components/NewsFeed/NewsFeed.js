@@ -1,6 +1,7 @@
 import React from 'react';
 
 //Material-ui components
+import { withStyles } from '@material-ui/core/styles';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 
@@ -8,6 +9,14 @@ import Button from '@material-ui/core/Button';
 import Navbar from '../Navbar/Navbar.js';
 import MaterialCard from '../MaterialCard/MaterialCard.js';
 import MaterialCardList from '../MaterialCardList/MaterialCardList.js';
+
+//Component Stylings
+const styles = {
+  materialCardList: {
+    margin: "0px 16px"
+  }
+}
+
 class NewsFeed extends React.Component {
   state = { 
     newsData: [],
@@ -18,11 +27,12 @@ class NewsFeed extends React.Component {
   }
 
   render() {
+    const{ classes, value } = this.props;
     return (
       <>
         <Navbar />
         <h1>NewsFeed</h1>
-        <ButtonGroup variant="contained" color="primary" md={12}>
+        <ButtonGroup variant="contained" color="primary">
           <Button>Default GTA V ID: 271590 </Button>
           <Button onClick={() => {this.getGameNews()}}>Dead By Daylight</Button>
           <Button onClick={() => {console.log("button 2 clicked")}}>Hollow Knight</Button>
@@ -34,4 +44,4 @@ class NewsFeed extends React.Component {
     );
   }
 }
-export default NewsFeed;
+export default withStyles(styles)(NewsFeed);

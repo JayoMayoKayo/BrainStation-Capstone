@@ -7,19 +7,25 @@ import Grid from '@material-ui/core/Grid';
 
 //Components
 import MaterialCard from '../MaterialCard/MaterialCard.js';
+import { ThemeProvider } from '@material-ui/styles';
 
 
 //Component Stylings
 const styles = {
-  
+  cardGrid : {
+    padding: '16px'
+  }
 };
 
 class MaterialCardList extends React.Component {
   render() {
     const{ classes, value } = this.props;
 
-    return (
-      <Grid container spacing={3}>
+    return (        
+      <Grid className={classes.cardGrid} container spacing={3}>
+        <Grid item xs={12}>
+          <MaterialCard />
+        </Grid>
         <Grid item xs={12} sm={6}>
           <MaterialCard />
         </Grid>

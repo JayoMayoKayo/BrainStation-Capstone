@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 //Material-ui components
 import { withStyles } from '@material-ui/core/styles';
@@ -19,11 +20,28 @@ const styles = {
 
 class NewsFeed extends React.Component {
   state = { 
-    newsData: [],
-    gameButton : 0
+    newsData: []
   }
+
+  componentDidMount() {
+    axios.get('http://localhost:8081/deals/stores')
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+  
   getGameNews = () => {
     console.log("hey my function works dope");
+    axios.get('http://localhost:8081/deals/stores')
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 
   render() {

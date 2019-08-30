@@ -37,11 +37,15 @@ class NewsFeed extends React.Component {
       })
   }
   
-  getGameNews = () => {
+  getGameNews = (gameId) => {
     console.log("hey my function works dope");
-    axios.get('http://localhost:8081/deals/stores')
+    axios.get(`http://localhost:8081/games/${gameId}`)
     .then((response) => {
+      console.log('this is ' + gameId);
       console.log(response.data);
+      this.setState({
+        newsData : response.data
+      })
     })
     .catch((error) => {
       console.log(error)
@@ -56,10 +60,10 @@ class NewsFeed extends React.Component {
         <h1>NewsFeed</h1>
         <ButtonGroup variant="contained" color="primary">
           <Button>Default GTA V ID: 271590 </Button>
-          <Button onClick={() => {this.getGameNews()}}>Dead By Daylight</Button>
-          <Button onClick={() => {console.log("button 2 clicked")}}>Hollow Knight</Button>
-          <Button onClick={() => {console.log("button 3 clicked")}}>Sekiro</Button>
-          <Button onClick={() => {console.log("button 3 clicked")}}>PUBG</Button>
+          <Button onClick={() => {this.getGameNews(381210)}}>Dead By Daylight</Button>
+          <Button onClick={() => {this.getGameNews(367520)}}>Hollow Knight</Button>
+          <Button onClick={() => {this.getGameNews(814380)}}>Sekiro</Button>
+          <Button onClick={() => {this.getGameNews(578080)}}>PUBG</Button>
         </ButtonGroup>
         <MaterialCardList newsData={this.state.newsData}/>
       </>

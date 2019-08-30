@@ -26,19 +26,9 @@ class MaterialCardList extends React.Component {
 
     return (        
       <Grid className={classes.cardGrid} container spacing={3}>
-        <Grid item xs={12}>
-          <MaterialCard />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <MaterialCard />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <MaterialCard />
-        </Grid>
-
-        {newsData.map(articleIndex => (
+        {newsData.map(newsData => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            <MaterialCard newsData={newsData}/>
+            <MaterialCard newsTitle={newsData.title}/>
           </Grid>
         ))}
       </Grid>

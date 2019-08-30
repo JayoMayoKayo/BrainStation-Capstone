@@ -28,7 +28,7 @@ class MaterialCard extends React.Component {
         <CardActionArea>
           <CardMedia />
           <CardContent>
-            <h1>{props.newsData.title}</h1>
+            <h1>{this.props.newsTitle}</h1>
             <p>this is a card</p>
           </CardContent>
         </CardActionArea>

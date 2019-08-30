@@ -26,8 +26,8 @@ router.get('/', (req, res) => {
 const itadUrl = "https://api.isthereanydeal.com/v02/game/";
 const itadKey = "1948ea933d99045ff10d2038af3e0435d435b384";
 
-router.get('/nameSearch/:gamename', (serverReq, serverRes) => {
-  const nameUrl = itadUrl + 'plain/?key=' + itadKey + '&title=' + serverReq.params.gamename;
+router.get('/nameSearch/:gameName', (serverReq, serverRes) => {
+  const nameUrl = itadUrl + 'plain/?key=' + itadKey + '&title=' + serverReq.params.gameName;
   axios.get(nameUrl)
   .then(response => {
     console.log(response.data);

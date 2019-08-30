@@ -15,11 +15,8 @@ router.get('/', (req, res) => {
 router.get('/gamenames', (serverReq, serverRes) => {
   axios.get(steamApi)
   .then(response => {
-    //console.log(response.data);
     console.log("starts here!");
     console.log(response.data);
-    //serverRes = response.data.appnews.newsitems;
-    //serverRes.json(response.applist.apps);
     serverRes.json(response.data.applist.apps);
   })
   .catch(err => {

@@ -8,8 +8,8 @@ import Button from '@material-ui/core/Button';
 
 //Components
 import Navbar from '../Navbar/Navbar.js';
-import MaterialCard from '../MaterialCard/MaterialCard.js';
-import MaterialCardList from '../MaterialCardList/MaterialCardList.js';
+import MaterialCard from './MaterialCard/MaterialCard.js';
+import MaterialCardList from './MaterialCardList/MaterialCardList.js';
 
 //Component Stylings
 const styles = {
@@ -41,8 +41,6 @@ class NewsFeed extends React.Component {
     console.log("hey my function works dope");
     axios.get(`http://localhost:8081/games/${gameId}`)
     .then((response) => {
-      console.log('this is ' + gameId);
-      console.log(response.data);
       this.setState({
         newsData : response.data
       })

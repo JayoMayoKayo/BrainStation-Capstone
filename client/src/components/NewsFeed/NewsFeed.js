@@ -14,7 +14,7 @@ import MaterialCardList from '../MaterialCardList/MaterialCardList.js';
 //Component Stylings
 const styles = {
   materialCardList: {
-    margin: "0px 16px"
+    margin: "0px"
   }
 }
 
@@ -24,9 +24,13 @@ class NewsFeed extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:8081/deals/stores')
+    axios.get('http://localhost:8081/games/271590')
       .then((response) => {
         console.log(response);
+        this.setState({
+          newsData : response.data
+        })
+        console.log(this.state.newsData);
       })
       .catch((error) => {
         console.log(error)
@@ -57,7 +61,7 @@ class NewsFeed extends React.Component {
           <Button onClick={() => {console.log("button 3 clicked")}}>Sekiro</Button>
           <Button onClick={() => {console.log("button 3 clicked")}}>PUBG</Button>
         </ButtonGroup>
-        <MaterialCardList />
+        <MaterialCardList newsData={this.state.newsData}/>
       </>
     );
   }

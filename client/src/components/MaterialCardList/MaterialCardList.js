@@ -13,12 +13,15 @@ import { ThemeProvider } from '@material-ui/styles';
 //Component Stylings
 const styles = {
   cardGrid : {
-    padding: '16px'
+    paddingLeft: '24px',
+    paddingTop: '16px',
+    width: '100%'
   }
 };
 
 class MaterialCardList extends React.Component {
   render() {
+    let newsData = this.props.newsData;
     const{ classes, value } = this.props;
 
     return (        
@@ -32,19 +35,14 @@ class MaterialCardList extends React.Component {
         <Grid item xs={12} sm={6}>
           <MaterialCard />
         </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <MaterialCard />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <MaterialCard />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <MaterialCard />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <MaterialCard />
-        </Grid>
+
+        {newsData.map(articleIndex => (
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            <MaterialCard newsData={newsData}/>
+          </Grid>
+        ))}
       </Grid>
+
     );
   }
 }

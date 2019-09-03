@@ -5,6 +5,9 @@ import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Input from '@material-ui/core/Input';
+import MenuItem from '@material-ui/core/MenuItem';
+
+//LoDash Components
 
 //Component Stylings
 const styles = {
@@ -30,7 +33,6 @@ class NameSearch extends React.Component {
   }
 
   gameNameSearch = (nameInput) => {
-    console.log()
     axios.get(`http://localhost:8081/deals/nameSearch/${nameInput}`)
       .then((response) => {
         console.log(response);
@@ -43,6 +45,11 @@ class NameSearch extends React.Component {
       })
   }
 
+  gameDealSearch = (gameNameString) => {
+    axios.get(`http://localhost:8081/deals/`)
+  }
+
+
   render() {
     const{ classes } = this.props;
     return (
@@ -50,6 +57,7 @@ class NameSearch extends React.Component {
           <Input className={classes.materialSearchBar}
             placeholder='Enter the game you want to save moolah on...' 
             onChange={(e) => {this.gameNameSearch(e.target.value)}} />
+          <MenuItem>hello</MenuItem>
           <p>hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello </p>
           <p>{this.state.gameSearchResult.data.plain}</p>
         </Paper>

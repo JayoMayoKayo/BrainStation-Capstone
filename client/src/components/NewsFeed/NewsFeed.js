@@ -63,7 +63,7 @@ class NewsFeed extends React.Component {
           <Button onClick={() => {this.getGameNews(814380)}}>Sekiro</Button>
           <Button onClick={() => {this.getGameNews(578080)}}>PUBG</Button>
         </ButtonGroup>
-        <MaterialCardList newsData={this.state.newsData}/>
+        <MaterialCardList newsData={this.state.newsData} />
       </>
     );
   }

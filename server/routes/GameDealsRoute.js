@@ -26,6 +26,8 @@ router.get('/', (req, res) => {
 const itadUrl = "https://api.isthereanydeal.com/v02/game/";
 const itadKey = "1948ea933d99045ff10d2038af3e0435d435b384";
 
+const dealItadUrl = "https://api.isthereanydeal.com/v01/search/search/?key="
+
 router.get('/nameSearch/:gameName', (serverReq, serverRes) => {
   const nameUrl = itadUrl + 'plain/?key=' + itadKey + '&title=' + serverReq.params.gameName;
   axios.get(nameUrl)
@@ -40,5 +42,17 @@ router.get('/nameSearch/:gameName', (serverReq, serverRes) => {
 })
 
 //ITAD Api
+router.get('/findGame/:dealSearch', (sReq, sRes) => {
+  const nameUrl = dealItadUrl + itadKey + '&q=' + sReq.params.dealSearch;
+  axios.get(nameUrl)
+  .then(response => {
+    console.log(response.data.data.list);
+    sRes.json(response.data.data).list;
+  })
+  .catch(err => {
+    console.log("sumthing not a foot");
+  })
+})
+
 
 module.exports = router;

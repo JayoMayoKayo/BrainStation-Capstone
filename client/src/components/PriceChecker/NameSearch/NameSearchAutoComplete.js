@@ -1,15 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 
-//Components
-import Navbar from '../Navbar/Navbar.js';
-import DealCardList from './DealCardList/DealCardList.js';
-
 //Material Ui Components
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
+
+//DownShift Components 
+import DownShift from 'downshift';
+
+//react-autosuggest
+import Autosuggest from 'react-autosuggest';
 
 //Component Stylings
 const styles = {
@@ -25,19 +27,31 @@ const styles = {
   }
 }
 
-class PriceChecker extends React.Component {
+const gameNames = [
+  { value: 'Apple1' },
+  { value: 'Apple2' },
+  { value: 'Apple3' },
+  { value: 'Apple4' },
+  { value: 'Apple5' }
+];
+
+class NameSearch extends React.Component {
   state = {
-    gameSearchResult : []
+    gameSearchResult : {
+      data : {
+        plain : ''
+      }
+    }
   }
 
-  gameDealSearch = (nameInput) => {
-    axios.get(`http://localhost:8081/deals/findGame/${nameInput}`)
+  gameNameSearch = (nameInput) => {
+    console.log()
+    axios.get(`http://localhost:8081/deals/nameSearch/${nameInput}`)
       .then((response) => {
         console.log(response);
         this.setState({
-          gameSearchResult : response.data.list
+          gameSearchResult : response.data
         })
-        console.log(this.state.gameSearchResult);
       })
       .catch((error) => {
         console.log(error)
@@ -47,20 +61,14 @@ class PriceChecker extends React.Component {
   render() {
     const{ classes } = this.props;
     return (
-      <>
-        <Navbar />
-        <h1>PriceChecker</h1>
-        
         <Paper className={classes.searchBar} >
           <Input className={classes.materialSearchBar}
             placeholder='Enter the game you want to save moolah on...' 
-            onChange={(e) => {this.gameDealSearch(e.target.value)}} />
-          <p>hello hello hello hello hello hello hello hello hello hello hello hello</p>
+            onChange={(e) => {this.gameNameSearch(e.target.value)}} />
+          <p>hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello </p>
+          <p>{this.state.gameSearchResult.data.plain}</p>
         </Paper>
-        
-
-      </>
     );
   }
 }
-export default withStyles(styles)(PriceChecker);
+export default withStyles(styles)(NameSearch);

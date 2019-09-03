@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const axios = require('axios');
-const steamApi = " http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=5B5B3B21C85AD550EA1043658984A130";
+const steamApi = "http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=5B5B3B21C85AD550EA1043658984A130";
 
 let testData = require("../testData/testgamedata.json");
 

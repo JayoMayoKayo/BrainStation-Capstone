@@ -1,15 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 
-//Components
-import Navbar from '../Navbar/Navbar.js';
-import DealCardList from './DealCardList/DealCardList.js';
-
 //Material Ui Components
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
+
+//LoDash Components
 
 //Component Stylings
 const styles = {
@@ -25,7 +23,7 @@ const styles = {
   }
 }
 
-class PriceChecker extends React.Component {
+class NameSearch extends React.Component {
   state = {
     gameSearchResult : []
   }
@@ -44,23 +42,17 @@ class PriceChecker extends React.Component {
       })
   }
 
+
   render() {
     const{ classes } = this.props;
     return (
-      <>
-        <Navbar />
-        <h1>PriceChecker</h1>
-        
         <Paper className={classes.searchBar} >
           <Input className={classes.materialSearchBar}
             placeholder='Enter the game you want to save moolah on...' 
             onChange={(e) => {this.gameDealSearch(e.target.value)}} />
-          <p>hello hello hello hello hello hello hello hello hello hello hello hello</p>
+          <p>hello hello hello hello hello hello hello hello hello </p>
         </Paper>
-        
-
-      </>
     );
   }
 }
-export default withStyles(styles)(PriceChecker);
+export default withStyles(styles)(NameSearch);

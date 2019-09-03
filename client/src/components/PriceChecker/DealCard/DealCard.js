@@ -15,7 +15,7 @@ import Button from '@material-ui/core/Button';
 //Component Stylings
 const styles = {
   designCard: {
-    backgroundColor: '#D3D8E1'
+    backgroundColor: 'white'
   }
 };
 
@@ -28,7 +28,7 @@ class DealCard extends React.Component {
         <CardActionArea>
           <CardMedia />
           <CardContent>
-            <h1>{this.props.newsTitle}</h1>
+            <h1>{this.props.gameSearchResult}</h1>
             <p>this is a card</p>
           </CardContent>
         </CardActionArea>

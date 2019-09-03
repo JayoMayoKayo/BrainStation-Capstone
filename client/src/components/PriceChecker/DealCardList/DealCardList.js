@@ -3,36 +3,48 @@ import React from 'react';
 //Material Ui Components
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-
+import Paper from '@material-ui/core/Paper';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import { ThemeProvider } from '@material-ui/styles';
 
 //Components
 import DealCard from '../DealCard/DealCard.js';
-import { ThemeProvider } from '@material-ui/styles';
-
+import DealListItem from '../DealListItem/DealListItem.js';
 
 //Component Stylings
 const styles = {
+  dealItems : {
+    padding : '16px',
+    marginLeft : '16px',
+    marginRight : '16px',
+    marginTop : '16px'
+  },
   cardGrid : {
     paddingLeft: '24px',
     paddingTop: '16px',
     width: '100%'
+  },
+  divider : {
+    color : 'blue'
   }
 };
 
 class DealCardList extends React.Component {
   render() {
-    let newsData = this.props.newsData;
+    let gameDealResult = this.props.gameDealResult;
     const{ classes, value } = this.props;
 
     return (        
-      <Grid className={classes.cardGrid} container spacing={3}>
-        {newsData.map(newsData => (
-          <Grid item xs={12} sm={6} md={4} lg={3}>
-            <DealCard newsTitle={newsData.title}/>
-          </Grid>
-        ))}
-      </Grid>
-
+      <>  
+        <Paper className={classes.dealItems}>
+          <List>
+            {gameDealResult.map((gameDealResult, index) => (
+                <DealListItem gameDealResult={gameDealResult} index={index}/>
+            ))}
+          </List>
+        </Paper>
+      </>
     );
   }
 }

@@ -28,7 +28,14 @@ class MaterialCardList extends React.Component {
       <Grid className={classes.cardGrid} container spacing={3}>
         {newsData.map(newsData => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            <MaterialCard newsTitle={newsData.title}/>
+            <MaterialCard 
+              newsTitle={newsData.title}
+              newsUrl={newsData.url}
+              newsAuthor={newsData.author}
+              newsContents={newsData.contents}
+              basicId={this.props.basicId}
+              newsFeedLabel={newsData.feedlabel}
+            />
           </Grid>
         ))}
       </Grid>

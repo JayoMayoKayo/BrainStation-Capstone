@@ -16,6 +16,13 @@ import Button from '@material-ui/core/Button';
 const styles = {
   designCard: {
     backgroundColor: '#D3D8E1'
+  },
+  media : {
+    maxWidth : '100%',
+    maxHeight : '100%'
+  },
+  BottomCard : {
+    marginLeft: '8px'
   }
 };
 
@@ -25,15 +32,15 @@ class MaterialCard extends React.Component {
 
     return (
       <Card className={classes.designCard}>
-        <CardActionArea>
-          <CardMedia />
+        <CardActionArea onClick={(event) => window.open(this.props.newsUrl, '_blank')}>
+          <img src={`https://steamcdn-a.akamaihd.net/steam/apps/${this.props.basicId}/header.jpg`} />
           <CardContent>
-            <h1>{this.props.newsTitle}</h1>
-            <p>this is a card</p>
+            <h2>{this.props.newsTitle}</h2>
+            <p>{this.props.newsAuthor}</p>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-          <Button>Test Button</Button>
+        <CardActions className={classes.BottomCard}>
+          <h4>{this.props.newsFeedLabel}</h4>
         </CardActions>
       </Card>
     );

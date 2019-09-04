@@ -14,6 +14,9 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 
+//LoDash Debounce
+import Debounce from 'debounce';
+
 //Component Stylings
 const styles = {
   searchBar : {

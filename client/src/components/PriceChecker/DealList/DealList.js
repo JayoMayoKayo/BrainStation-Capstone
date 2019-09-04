@@ -13,6 +13,9 @@ import DealListItem from '../DealListItem/DealListItem.js';
 
 //Component Stylings
 const styles = {
+  banner: {
+    maxWidth : '100%',
+  },
   dealItems : {
     padding : '16px',
     marginLeft : '16px',
@@ -32,12 +35,22 @@ const styles = {
 class DealCardList extends React.Component {
   render() {
     let gameDealResult = this.props.gameDealResult;
+    let gameInfo = this.props.gameInfo;
     const{ classes, value } = this.props;
 
     return (        
       <>  
         <Paper className={classes.dealItems}>
-          <h1>{gameDealResult.title}</h1>
+          <Grid container>
+            <Grid item xs={12}
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+            >
+              <img className={classes.banner} src={gameInfo.image}/>
+            </Grid>
+          </Grid>
           <List>
             {gameDealResult.map((gameDealResult, index) => (
                 <DealListItem gameDealResult={gameDealResult} index={index}/>

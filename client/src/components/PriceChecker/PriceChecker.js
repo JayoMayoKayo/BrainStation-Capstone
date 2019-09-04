@@ -18,6 +18,9 @@ import Divider from '@material-ui/core/Divider';
 //LoDash Debounce
 import { debounce } from 'lodash';
 
+//Assets
+import defaultGameBanner from '../Assets/defaultGameBanner.jpg';
+
 //Component Stylings
 const styles = {
   searchBar : {
@@ -63,46 +66,65 @@ class PriceChecker extends React.Component {
       } 
     ],
     //Hides Search Results
-    showSearchResults : false
+    showSearchResults : false,
+    gameInfo : {}
   }
 
   componentDidMount() {
     axios.get(`http://localhost:8081/deals/findGame/degreesofseparation`)
-      .then((response) => {
-        this.setState({
-          gameDealResult : response.data.list
-        })
+    .then((response) => {
+      this.setState({
+        gameDealResult : response.data
       })
-      .catch((error) => {
-        console.log(error);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    axios.get(`http://localhost:8081/deals/getInfo/degreesofseparation`)
+    .then((response) => {
+      this.setState({
+        gameInfo : response.data
       })
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
 
   gameNameSearch = debounce((nameInput) => {
     axios.get(`http://localhost:8081/deals/nameSearch/${nameInput}`)
-      .then((response) => {
-        console.log(response.data);
-        this.setState({
-          gameNameResult : response.data.data.list,
-          showSearchResults : true
-        })
+    .then((response) => {
+      console.log(response.data);
+      this.setState({
+        gameNameResult : response.data.data.list,
+        showSearchResults : true
       })
-      .catch((error) => {
-        console.log(error);
-      })
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }, 1000)
 
   gameDealSearch = (x) => {
     axios.get(`http://localhost:8081/deals/findGame/${x}`)
-      .then((response) => {
-        this.setState({
-          gameDealResult : response.data.list,
-          showSearchResults : false
-        })
+    .then((response) => {
+      this.setState({
+        gameDealResult : response.data,
+        showSearchResults : false
       })
-      .catch((error) => {
-        console.log(error);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    axios.get(`http://localhost:8081/deals/getInfo/${x}`)
+    .then((response) => {
+      this.setState({
+        gameInfo : response.data
       })
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
   
   render() {
@@ -124,7 +146,7 @@ class PriceChecker extends React.Component {
             : null
           }
         </Paper>
-        <DealList gameDealResult={this.state.gameDealResult}/>
+        <DealList gameDealResult={this.state.gameDealResult} gameInfo={this.state.gameInfo}/>
       </>
     );
   }

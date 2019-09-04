@@ -15,6 +15,7 @@ const styles = {
   AboutMe : {
     paddingLeft: '24px',
     paddingTop: '16px',
+    paddingBottom : '16px',
     marginLeft : '16px',
     marginRight : '16px',
     marginTop : '16px'
@@ -28,9 +29,20 @@ class About extends React.Component {
     return (
       <>
         <Navbar />
-        <Paper className={classes.AboutMe}>
-          <h1>Who am I?</h1>
-        </Paper>
+        <Grid spacing={1}
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+        >
+          <Grid item xs={12} md={8} lg={6}>
+            <Paper className={classes.AboutMe}>
+              <h1>Who am I? (It's Joseph Kim!)</h1>
+
+              <p>My love for technology is matched with my passion for learning. With a technical background in mechanical and manufacturing, I use my problem-solving abilities to create unique solutions to everyday problems.</p>
+            </Paper>
+          </Grid>
+        </Grid>
       </>
     );
   }

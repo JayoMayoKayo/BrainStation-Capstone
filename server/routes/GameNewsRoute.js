@@ -16,10 +16,6 @@ router.get('/:appid', (serverReq, serverRes) => {
   console.log(serverReq.params.appid);
   axios.get(url)
   .then(response => {
-    //console.log(response.data);
-    console.log("starts here!");
-    console.log(response.data.appnews.newsitems);
-    //serverRes = response.data.appnews.newsitems;
     serverRes.json(response.data.appnews.newsitems);
   })
   .catch(err => {

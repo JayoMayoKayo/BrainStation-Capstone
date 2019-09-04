@@ -24,17 +24,20 @@ class DealListItem extends React.Component {
       <>  
         <ListItem disableGutters={true}>  
           <Grid container spacing={1}>
-            <Grid item xs={12}>
+            <Grid item xs ={12} sm={6} md={3}>
               <p>{this.props.gameDealResult.title}</p>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs ={6} sm={6} md={3}>
               <p>{this.props.gameDealResult.shop.name}</p>
             </Grid>
-            <Grid item xs={12}>
-              <p>{this.props.gameDealResult.price_new}</p>
+            <Grid item xs ={12} sm={6} md={3}>
+              <p>{this.props.gameDealResult.price_cut}% Off</p>
             </Grid>
-            <Grid item xs={12}>
-              <p>{this.props.gameDealResult.price_old}</p>  
+            <Grid item xs ={6} sm={6} md={3}>
+              <p>Current Price: ${this.props.gameDealResult.price_new}</p>
+            </Grid>
+            <Grid item xs ={6} sm={6} md={3}>
+              <p>Original Price: ${this.props.gameDealResult.price_old}</p>  
             </Grid>
           </Grid>
         </ListItem>

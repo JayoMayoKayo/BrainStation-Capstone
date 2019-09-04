@@ -18,8 +18,6 @@ router.get('/nameSearch/:gameName', (serverReq, serverRes) => {
   const nameUrl = dealItadUrl + itadKey + '&q=' + serverReq.params.gameName;
   axios.get(nameUrl)
   .then(response => {
-    console.log(response.data);
-    //console.log(response.data.plain);
     serverRes.json(response.data);
   })
   .catch(err => {
@@ -32,7 +30,6 @@ router.get('/findGame/:dealSearch', (sReq, sRes) => {
   const nameUrl = dealItadUrl + itadKey + '&q=' + sReq.params.dealSearch;
   axios.get(nameUrl)
   .then(response => {
-    console.log(response.data.data.list);
     sRes.json(response.data.data).list;
   })
   .catch(err => {

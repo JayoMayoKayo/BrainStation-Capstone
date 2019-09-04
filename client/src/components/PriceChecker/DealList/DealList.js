@@ -9,7 +9,6 @@ import ListItem from '@material-ui/core/ListItem';
 import { ThemeProvider } from '@material-ui/styles';
 
 //Components
-import DealCard from '../DealCard/DealCard.js';
 import DealListItem from '../DealListItem/DealListItem.js';
 
 //Component Stylings
@@ -38,6 +37,7 @@ class DealCardList extends React.Component {
     return (        
       <>  
         <Paper className={classes.dealItems}>
+          <h1>{gameDealResult.title}</h1>
           <List>
             {gameDealResult.map((gameDealResult, index) => (
                 <DealListItem gameDealResult={gameDealResult} index={index}/>

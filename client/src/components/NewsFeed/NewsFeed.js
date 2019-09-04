@@ -11,6 +11,9 @@ import Navbar from '../Navbar/Navbar.js';
 import MaterialCard from './MaterialCard/MaterialCard.js';
 import MaterialCardList from './MaterialCardList/MaterialCardList.js';
 
+import { debounce } from 'lodash.debounce';
+
+
 //Component Stylings
 const styles = {
   materialCardList: {

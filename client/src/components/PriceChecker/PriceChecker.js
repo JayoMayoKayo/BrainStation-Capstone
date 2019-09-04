@@ -3,7 +3,8 @@ import axios from 'axios';
 
 //Components
 import Navbar from '../Navbar/Navbar.js';
-import DealCardList from './DealCardList/DealCardList.js';
+import DealList from './DealList/DealList.js';
+import SearchResults from './SearchResults/SearchResults.js';
 
 //Material Ui Components
 import { withStyles } from '@material-ui/core/styles';
@@ -15,7 +16,7 @@ import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 
 //LoDash Debounce
-import Debounce from 'debounce';
+import { debounce } from 'lodash';
 
 //Component Stylings
 const styles = {
@@ -26,9 +27,7 @@ const styles = {
     marginTop : '16px'
   },
   materialSearchBar : {
-    width : '50%',
-    alignContent : 'center',
-    justifyContent : 'center' 
+    width : '100%', 
   },
   listElement : {
     paddingBottom : '2px',
@@ -62,13 +61,14 @@ class PriceChecker extends React.Component {
             "game": ""
         }
       } 
-    ]
+    ],
+    //Hides Search Results
+    showSearchResults : false
   }
 
   componentDidMount() {
     axios.get(`http://localhost:8081/deals/findGame/degreesofseparation`)
       .then((response) => {
-        console.log(response);
         this.setState({
           gameDealResult : response.data.list
         })
@@ -78,29 +78,27 @@ class PriceChecker extends React.Component {
       })
   }
 
-  gameNameSearch = (nameInput) => {
+  gameNameSearch = debounce((nameInput) => {
     axios.get(`http://localhost:8081/deals/nameSearch/${nameInput}`)
       .then((response) => {
         console.log(response.data);
         this.setState({
-          gameNameResult : response.data.data.list
+          gameNameResult : response.data.data.list,
+          showSearchResults : true
         })
-        console.log(this.state.gameNameResult)
       })
       .catch((error) => {
         console.log(error);
       })
-  }
+  }, 1000)
 
   gameDealSearch = (x) => {
     axios.get(`http://localhost:8081/deals/findGame/${x}`)
       .then((response) => {
-        console.log(response);
         this.setState({
-          gameDealResult : response.data.list
+          gameDealResult : response.data.list,
+          showSearchResults : false
         })
-        console.log(this.state.gameDealResult);
-        console.log(this.state.gameDealResult[0].title);
       })
       .catch((error) => {
         console.log(error);
@@ -118,21 +116,15 @@ class PriceChecker extends React.Component {
             placeholder='Enter the game you want to save moolah on...' 
             onChange={(e) => {this.gameNameSearch(e.target.value)}} 
           />
-          <List>
-            {gameNameResult.map((gameNameResult, index) => (
-              <ListItem 
-                className={classes.listElement} 
-                disableGutters={true} 
-                onClick={() => {this.gameDealSearch(gameNameResult.plain)}}
-              >
-                <p className={classes.listItemP}>{gameNameResult.title}</p>
-              </ListItem>
-            ))}
-          </List>
+          {this.state.showSearchResults ? 
+            <SearchResults 
+            gameNameResult={this.state.gameNameResult}
+            gameDealSearch={this.gameDealSearch}
+            /> 
+            : null
+          }
         </Paper>
-        <DealCardList gameDealResult={this.state.gameDealResult}/>
-        
-
+        <DealList gameDealResult={this.state.gameDealResult}/>
       </>
     );
   }

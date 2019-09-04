@@ -53,7 +53,7 @@ class DealCardList extends React.Component {
           </Grid>
           <List>
             {gameDealResult.map((gameDealResult, index) => (
-                <DealListItem gameDealResult={gameDealResult} index={index}/>
+                <DealListItem gameDealResult={gameDealResult} gameInfo={gameInfo} index={index}/>
             ))}
           </List>
         </Paper>

@@ -13,17 +13,27 @@ import Button from '@material-ui/core/Button'
 //Component Stylings
 const styles = {
   storeDealList : {
-
+    '&:hover' : {
+      background: '#D3D8E1'
+    }
   }
 };
 
 class DealListItem extends React.Component {
+  historyLink = (event) => {
+    event.stopPropagation();
+    window.open(this.props.gameInfo.urls.history, '_blank');
+  }
   render() {
     const{ classes, value } = this.props;
-
+    let gameInfo = this.props.gameInfo;
     return (
       <>  
-        <ListItem disableGutters={true}>  
+        <ListItem 
+          className={classes.storeDealList} 
+          disableGutters={true}
+          onClick={() => {window.open(`${this.props.gameDealResult.url}`, '_blank')}}
+          >  
           <Grid container spacing={1}>
             
               <Grid item xs ={6} sm={6} md={4} lg={2}>
@@ -39,7 +49,10 @@ class DealListItem extends React.Component {
                 <p>Original Price: ${this.props.gameDealResult.price_old}</p>  
               </Grid>
               <Grid item xs ={12} lg={2}>
-                <Button color="primary">Check Price History</Button>  
+                <Button 
+                  color="primary"
+                  onClick={(event) => {this.historyLink(event)}}
+                >Check Price History</Button>  
               </Grid>
             
           </Grid>
